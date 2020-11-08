@@ -1,0 +1,19 @@
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    service-url: # 注册中心对外暴露的注册地址
+      defaultZone: http://root:123@localhost:8762/eureka/
+
+spring:
+  application:
+    name: eureka-server
+  security:
+    user:
+      name: root
+      password: 123
