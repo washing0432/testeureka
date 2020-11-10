@@ -3,6 +3,7 @@ package com.example.service.impl;
 import com.example.pojo.Order;
 import com.example.pojo.Product;
 import com.example.service.OrderService;
+import com.example.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -15,8 +16,6 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.RestTemplate;
 
 import java.text.MessageFormat;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -40,6 +39,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     DiscoveryClient discoveryClient;
 
+    @Autowired
+    ProductService productService;
+
     @Override
     public Order selectOrderById(Integer id) {
 
@@ -47,7 +49,8 @@ public class OrderServiceImpl implements OrderService {
                 "R2000505000123",
                 "东安路二店",
                 120D,
-                selectProductListByLoadBalancerClient());
+                productService.selectProductList());
+//                selectProductListByLoadBalancerClient());
 //                selectProductListByLoadBalancerClient());
                 //selectProductListByDiscoverClient());
     }

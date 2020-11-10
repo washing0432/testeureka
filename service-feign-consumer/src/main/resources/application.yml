@@ -1,0 +1,19 @@
+server:
+  port: 9091
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:123@localhost:8761/eureka/,http://root:123@localhost:8762/eureka/
+    register-with-eureka: false
+    registry-fetch-interval-seconds: 10
+
+service-provider:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+#    listOfServers: http://localhost:7070,http://localhost:7071,http://localhost:7072
+
+spring:
+  application:
+    name: service-feign-consumer
+

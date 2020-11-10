@@ -15,6 +15,7 @@
         <module>service-consumer</module>
         <module>serviceprovider02</module>
         <module>serviceprovider03</module>
+        <module>service-feign-consumer</module>
     </modules>
 
     <parent>

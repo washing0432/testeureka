@@ -1,14 +1,14 @@
 package com.example;
 
-import com.netflix.loadbalancer.RandomRule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-public class ServiceConsumerApplication {
+@EnableFeignClients
+public class ServiceFeignConsumerApplication {
 
     @Bean
 //    @LoadBalanced
@@ -22,6 +22,6 @@ public class ServiceConsumerApplication {
 //    }
 
     public static void main(String[] args){
-        SpringApplication.run(ServiceConsumerApplication.class,args);
+        SpringApplication.run(ServiceFeignConsumerApplication.class,args);
     }
 }

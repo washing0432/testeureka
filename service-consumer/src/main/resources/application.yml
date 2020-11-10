@@ -1,11 +1,20 @@
 server:
   port: 9090
-eureka:
-  instance:
-    prefer-ip-address: true
-    instance-id: ${spring.cloud.client.ip-address}:${server.port}
-  client:
-    register-with-eureka: false
-    registry-fetch-interval-seconds: 10
-    service-url:
-      defaultZone: http://root:123@localhost:8761/eureka/,http://root:123@localhost:8762/eureka/
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+#  client:
+#    register-with-eureka: false
+#    registry-fetch-interval-seconds: 10
+#    service-url:
+#      defaultZone: http://root:123@localhost:8761/eureka/,http://root:123@localhost:8762/eureka/
+
+service-provider:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+    listOfServers: http://localhost:7070,http://localhost:7071,http://localhost:7072
+
+ribbon:
+  eureka:
+    enabled: false
