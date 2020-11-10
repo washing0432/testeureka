@@ -14,6 +14,7 @@
         <module>service-provider</module>
         <module>service-consumer</module>
         <module>serviceprovider02</module>
+        <module>serviceprovider03</module>
     </modules>
 
     <parent>

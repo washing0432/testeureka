@@ -48,7 +48,7 @@ public class OrderServiceImpl implements OrderService {
                 "R2000505000123",
                 "东安路二店",
                 120D,
-                selectProductWithLoadBalancered());
+                selectProductListByLoadBalancerClient());
 //                selectProductListByLoadBalancerClient());
                 //selectProductListByDiscoverClient());
     }
