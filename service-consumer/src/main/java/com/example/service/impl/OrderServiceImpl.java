@@ -43,12 +43,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order selectOrderById(Integer id) {
-//        return new Order(1,"R2000505000123","东安路二店",120D, Arrays.asList(
-//                        new Product(1,"华为手机",20,110D),
-//                        new Product(2,"小米手机",30,Double.valueOf(136)),
-//                        new Product(3,"魅族手机",30,Double.valueOf(136)),
-//                        new Product(4,"oppo手机",30,Double.valueOf(136))
-//        ));
 
         return new Order(1,
                 "R2000505000123",
