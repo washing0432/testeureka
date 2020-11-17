@@ -11,4 +11,7 @@ public interface ProductService {
 
     @GetMapping("/product/list")
     List<Product> selectProductList();
+
+    @GetMapping("/product/pojo")
+    Product selectProductByProduct(Product product);
 }

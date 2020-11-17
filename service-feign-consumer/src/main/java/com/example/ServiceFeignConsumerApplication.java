@@ -1,5 +1,6 @@
 package com.example;
 
+import feign.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -21,7 +22,13 @@ public class ServiceFeignConsumerApplication {
 //        return new RandomRule();
 //    }
 
+    @Bean
+    public Logger.Level getLog(){
+        return Logger.Level.FULL;
+    }
+
     public static void main(String[] args){
+
         SpringApplication.run(ServiceFeignConsumerApplication.class,args);
     }
 }

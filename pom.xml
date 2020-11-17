@@ -45,6 +45,12 @@
                 <version>${spring.boot.security.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-httpclient</artifactId>
+                <version>10.7.4</version>
+            </dependency>
+
             <!--<dependency>-->
                 <!--<groupId>org.projectlombok</groupId>-->
                 <!--<artifactId>lomobok</artifactId>-->
