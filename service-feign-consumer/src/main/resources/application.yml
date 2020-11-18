@@ -19,6 +19,19 @@ service-provider:
 spring:
   application:
     name: service-feign-consumer
+  redis:
+    timeout: 10000
+    host: localhost
+    port: 16379
+    password:
+    database: 0
+    lettuce:
+      pool:
+        max-active: 1024
+        max-wait: 10000
+        max-idle: 200
+        min-idle: 5
+
 feign:
   compression:
     request:

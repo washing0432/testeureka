@@ -2,6 +2,7 @@ package com.example.service.impl;
 
 import com.example.pojo.Product;
 import com.example.service.ProductService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -9,6 +10,8 @@ import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService {
+
+
     @Override
     public List<Product> selectProductList() {
 
@@ -89,5 +92,12 @@ public class ProductServiceImpl implements ProductService {
         System.out.println(product);
         product.setProductName("回传:" + product.getProductName());
         return product;
+    }
+
+    @Override
+    public Product selectProductById(Integer id) {
+        Product p =  new Product(4,"oppo手机",30,Double.valueOf(136));
+        p.setProductName("手工传入id-"+id);
+        return p;
     }
 }

@@ -9,4 +9,6 @@ public interface ProductService {
     List<Product> selectProductList();
 
     Product selectProductByPojo(Product product);
+
+    Product selectProductById(Integer id);
 }
