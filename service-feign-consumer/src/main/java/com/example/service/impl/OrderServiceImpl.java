@@ -7,6 +7,7 @@ import com.example.service.ProductService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCollapser;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import com.netflix.hystrix.contrib.javanica.conf.HystrixPropertiesManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -82,20 +83,47 @@ public class OrderServiceImpl implements OrderService {
         //selectProductListByDiscoverClient());
     }
 
-    @HystrixCommand(groupKey = "order-service-list-pool",
-            threadPoolKey = "order-service-list-pool",
-            commandKey = "selectOrderList",
+//    @HystrixCommand(groupKey = "order-service-list-pool",
+//            threadPoolKey = "order-service-list-pool",
+//            commandKey = "selectOrderList",
+//            commandProperties = {
+//                    //超时时间，默认1000ms
+//                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",
+//                            value = "5000")
+//            },
+//            threadPoolProperties = {
+//                    //
+//                    @HystrixProperty(name = "coreSize", value = "6"),
+//                    @HystrixProperty(name = "maxQueueSize", value = "100"),
+//                    @HystrixProperty(name = "keepAliveTimeMinutes", value = "2"),
+//                    @HystrixProperty(name = "queueSizeRejectionThreshold", value = "100")
+//            },
+//            fallbackMethod = "selectOrderListFallback")
+//    @Override
+//    public List<Order> selectOrderList(List<Integer> ids) {
+//
+//        System.out.println(Thread.currentThread().getName() + "---selectOrderList---");
+//        System.out.println(MessageFormat.format("--call selectOrderList: 合并的请求参数:{0}--", ids));
+//
+//        List<Order> orders = new ArrayList();
+//        for (Integer i : ids) {
+//
+//            orders.add(new Order(i,
+//                    "R00000" + i.toString(),
+//                    "东安路" + i.toString() + "店",
+//                    120D,
+//                    Arrays.asList(productService.selectProductById(i))));
+//        }
+//
+//        return orders;
+//    }
+
+    @HystrixCommand(
             commandProperties = {
                     //超时时间，默认1000ms
-                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",
-                            value = "5000")
-            },
-            threadPoolProperties = {
-                    //
-                    @HystrixProperty(name = "coreSize", value = "6"),
-                    @HystrixProperty(name = "maxQueueSize", value = "100"),
-                    @HystrixProperty(name = "keepAliveTimeMinutes", value = "2"),
-                    @HystrixProperty(name = "queueSizeRejectionThreshold", value = "100")
+                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "5000"),
+                    @HystrixProperty(name = HystrixPropertiesManager.EXECUTION_ISOLATION_STRATEGY,value="SEMAPHORE"),
+                    @HystrixProperty(name = HystrixPropertiesManager.EXECUTION_ISOLATION_SEMAPHORE_MAX_CONCURRENT_REQUESTS,value="6")
             },
             fallbackMethod = "selectOrderListFallback")
     @Override
