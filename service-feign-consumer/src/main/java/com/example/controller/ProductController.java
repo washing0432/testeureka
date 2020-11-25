@@ -20,12 +20,15 @@ public class ProductController {
 
     @GetMapping("/pojo")
     public Product selectProductByPojo(Product product){
+        System.out.println(Thread.currentThread().getName()+"---selectProductByPojo---");
+
         return productService.selectProductByProduct(product);
     }
 
     @GetMapping("/list")
     public List<Product> selectProductList(){
 //        return productService.selectProductList();
+        System.out.println(Thread.currentThread().getName()+"---selectProductList---");
         List<Product> products = productService.selectProductList();
         return products;
     }
